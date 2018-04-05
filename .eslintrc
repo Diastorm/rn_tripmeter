@@ -1,0 +1,9 @@
+{
+    "extends": "rallycoding",
+    "rules": {
+        "max-len":"off",
+        "arrow-body-style":"off",
+        "no-empty": "off",
+        "prefer-const":"warn"
+    }
+}
