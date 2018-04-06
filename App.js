@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import Tripmeter from './lib/Tripmeter';
+import { Tripmeter } from './lib/Tripmeter';
 
 export default class App extends React.Component {
 
