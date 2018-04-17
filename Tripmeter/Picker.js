@@ -7,6 +7,8 @@ import {
     Platform
 } from 'react-native';
 
+import { LinearGradient } from 'expo';
+
 import { CSS } from './styles';
 
 export default class Picker extends Component {
@@ -45,7 +47,7 @@ export default class Picker extends Component {
         if (this.fixInterval) {
             clearInterval(this.fixInterval);
         }
-        //picker2 (containing selected item) has a time delay.  add 10ms delay to scroll end to sync
+        // picker2 (containing selected item) has a time delay.  add 10ms delay to scroll end to sync
     
         this.fixInterval = setInterval(() => this.timeFix(start, y, onScrollEndDragCount), 10);
     }
@@ -103,19 +105,40 @@ export default class Picker extends Component {
         return arr.map((item, i) => {
             if (size === 'big') {
                 return (
-                    <View key={i} style={{ ...styles.boxContainer, ...styles.selectBoxContainer, height: this.props.boxHeight - 2 }}>
+                    <LinearGradient
+                        key={i}
+                        colors={['#343434', '#1C1C1C', '#121212']}
+                        style={{ ...styles.boxContainer, height: this.props.boxHeight - 2 }}
+                        renderToHardwareTextureAndroid
+                    >
                         <Text style={{ ...styles.selectedBoxStyle }}>
                         {item}
                         </Text>
-                    </View>
+                    </LinearGradient>
+                    // <View key={i} style={{ ...styles.boxContainer, ...styles.selectBoxContainer, height: this.props.boxHeight - 2 }}>
+                    //     <Text style={{ ...styles.selectedBoxStyle }}>
+                    //     {item}
+                    //     </Text>
+                    // </View>
                 );
             }
             return (
-                <View key={i} style={{ ...styles.boxContainer, ...styles.idleBoxContainer, height: this.props.boxHeight - 2 }}>
+                <LinearGradient
+                    key={i}
+                    colors={['#242424', '#1B1B1B', '#111']}
+                    style={{ ...styles.boxContainer, height: this.props.boxHeight - 2 }}
+                    renderToHardwareTextureAndroid
+                >
                     <Text style={{ ...styles.idleBoxStyle }}>
                     {item}
                     </Text>
-                </View>
+                </LinearGradient>
+                    
+                // <View key={i} style={{ ...styles.boxContainer, ...styles.idleBoxContainer, height: this.props.boxHeight - 2 }}>
+                //     <Text style={{ ...styles.idleBoxStyle }}>
+                //     {item}
+                //     </Text>
+                // </View>
             );
         });
     }
@@ -173,6 +196,8 @@ export default class Picker extends Component {
                         scrollEventThrottle={16}
                         showsVerticalScrollIndicator={false}
                         ref='pScrollView'
+                        renderToHardwareTextureAndroid
+                        scrollsToTop={false}
                     >
                         <View style={{ height: this.props.scrollPad / 2 }} />
                             {this.getItem('small')}
@@ -193,6 +218,8 @@ export default class Picker extends Component {
                         onContentSizeChange={this.handleP2ContentSizeChange}
                         showsVerticalScrollIndicator={false}
                         ref='pScrollView2'
+                        renderToHardwareTextureAndroid
+                        scrollsToTop={false}
                     >
                         {this.getItem('big')}
                     </ScrollView>
@@ -227,6 +254,7 @@ const styles = {
     },
     selectedBoxStyle: {
         color: '#fff',
+        fontWeight: 'bold'
     },
     pickerStyle: {
         backgroundColor: '#000',

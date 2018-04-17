@@ -7,7 +7,8 @@ class Tripmeter extends Component {
     static defaultProps = {
         tripmeterHeight: 225,
         boxHeight: 25,
-        digits: 6
+        digits: 6,
+        initial: 0
     }
 
     state = {

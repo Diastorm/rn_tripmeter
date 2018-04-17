@@ -22,7 +22,6 @@ export default class App extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={{ marginTop: 55 }}>Tripmeter initial value: {this.props.initialValue}</Text>
                 <Tripmeter 
                     digits={this.props.digits}
                     initial={this.props.initialValue}
@@ -30,6 +29,7 @@ export default class App extends React.Component {
                     boxHeight={this.props.boxHeight}
                     onTripMeterChange={this.onTripMeterChange}
                 />
+                <Text style={{ marginTop: 55 }}>Tripmeter initial value: {this.props.initialValue}</Text>
                 <Text>Selected value: {this.state.tripMeterValue}</Text>
             </View>
         );
@@ -40,6 +40,6 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#2089dc',
         flex: 1,
-        justifyContent: 'center',
+        
     },
 });
